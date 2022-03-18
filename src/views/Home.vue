@@ -1,9 +1,39 @@
 <template>
   <div class="home">
+    <div class="modal z-50 w-full h-screen fixed p-9" v-show="toggleSearch">
+      <div
+        class="modal-search bg-secondary border border-secondary mt-8 rounded-md lg:max-w-4xl mx-auto max-w-full"
+      >
+        <div class="modal-body">
+          <div class="p-3 border-b-2 border-black">
+            <input
+              type="search"
+              placeholder="Cari artikel atau lompat ke halaman..."
+              v-model="searchQuery"
+              class="w-full p-3 rounded-sm bg-transparent text-white"
+            />
+          </div>
+          <div class="p-3">
+            <span
+              class="mt-10 text-white font-medium"
+              v-for="result in resultQuery.slice(0, 5)"
+              :key="result.id"
+            >
+              <router-link
+                :to="result.link"
+                class="block p-4 border-b-2 border-black rounded-sm font-normal hover:text-secondary hover:bg-primary text-gray-200"
+                >{{ result.name }}</router-link
+              >
+            </span>
+          </div>
+          <div class="p-2"></div>
+        </div>
+      </div>
+    </div>
     <div class="box-v1 bg-black p-8 text-center lg:h-custom h-auto">
       <div class="lg:container mx-auto lg:max-w-7xl max-w-full lg:mt-44 mt-28">
         <h1
-          class="lg:text-6xl text-4xl lg:max-w-5xl max-w-full mx-auto font-playfair font-medium text-gray-200"
+          class="lg:text-6xl text-4xl stroke-1 stroke-current lg:max-w-5xl max-w-full mx-auto font-playfair font-medium text-gray-200"
         >
           Konsultasi
           <span class="font-bold border-b-1 text-primary border-white"
@@ -23,30 +53,42 @@
         </p>
         <div class="wrap lg:max-w-3xl max-w-full mx-auto mt-10">
           <div
-            class="input-box border-1 border border-white transition-all focus-within:bg-gray-900 rounded-full flex"
+            class="input-box border-1 border bg-secondary border-black transition-all focus-within:bg-gray-900 rounded-full flex"
           >
             <input
               type="text"
-              class="bg-black rounded-full px-5 focus:bg-gray-900 transition-all font-nunito py-4 w-full outline-none lg:text-md text-sm text-gray-300 box-border bg-transparent"
+              @click="toggleSearch = !toggleSearch"
+              class="bg-secondary rounded-full px-5 focus:bg-gray-900 transition-all font-nunito py-4 w-full outline-none lg:text-md text-sm text-gray-300 box-border bg-transparent"
               placeholder="Cek nomor hoki mu? siapa tau dapet jodoh..."
             />
-            <button
-              class="bg-white active: rounded-full px-5 py-3 border-2 border"
-            >
+            <button class="bg-white rounded-full px-5 py-3 border-2">
               <fa :icon="['fas', 'search']" />
             </button>
           </div>
         </div>
         <div
-          class="bg-white z-10 border rounded-lg border-black box-border p-5 lg:max-w-3xl mx-auto max-w-full mt-14"
+          class="bg-white z-10 border rounded-lg border-black box-border p-5 lg:max-w-3xl mx-auto max-w-full mt-20"
         >
           <h2 class="text-gray-900 text-left font-semibold mt-2 font-nunito">
             Masukan tanggal lahir mu
           </h2>
+          <!-- <div class="lg:flex lg:flex-warp block lg:items-center gap-5">
+            <input
+              type="date"
+              name=""
+              class="border border-black font-nunito p-2 rounded-md bg-gray-300 w-full box-border mt-5"
+              id=""
+            />
+            <button
+              class="bg-black lg:px-10 lg:py-3 p-3 lg:w-auto w-full rounded-full mt-4 text-gray-200 font-medium"
+            >
+              Check
+            </button>
+          </div> -->
           <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 mt-5 text-left">
             <input
               type="number"
-              class="border border-black font-nunito p-2 rounded-md bg-gray-300"
+              class="border border-black font-nunito p-2 rounded-md text-gray-900 bg-gray-300"
               placeholder="tanggal"
             />
             <select
@@ -66,12 +108,12 @@
             </select>
             <input
               type="text"
-              class="border border-black p-2 font-nunito rounded-md bg-gray-300"
+              class="border border-black p-2 font-nunito text-gray-900 rounded-md bg-gray-300"
               placeholder="tahun"
             />
           </div>
           <button
-            class="bg-black p-4 rounded-full w-full mt-4 text-gray-200 font-medium"
+            class="bg-black p-3 transform active:translate-y-1 transition-all w-full rounded-full mt-8 text-gray-200 font-medium"
           >
             Check
           </button>
@@ -87,14 +129,16 @@
         <h2 class="font-bold font-nunito text-lg text-black">
           Orang lain juga mengunjungi
         </h2>
-        <div class="grid grid-rows-3 grid-flow-col gap-4 mt-10">
+        <div
+          class="grid lg:grid-rows-4 lg:grid-flow-col grid-flow-row grid-cols-1 gap-4 mt-10"
+        >
           <div
-            class="card flex max-w-md rounded-md"
+            class="card flex lg:max-w-md max-w-full lg:border-none border rounded-md"
             v-for="item in items"
             :key="item.id"
           >
-            <div class="p-5 flex-none text-center">
-              <h1 class="text-gray-400 font-bold text-lg font-nunito">
+            <div class="p-5 flex-none text-center lg:bg-transparent">
+              <h1 class="text-primary font-bold text-2xl font-nunito">
                 <span v-if="item.id > 9">
                   {{ item.id }}
                 </span>
@@ -117,6 +161,7 @@
         </div>
       </div>
     </div>
+    <div class="divide-y divide-gray-400 md:divide-y-8"></div>
   </div>
 </template>
 
@@ -127,6 +172,7 @@ export default {
   name: "Home",
   data() {
     return {
+      searchQuery: null,
       items: [
         {
           id: 1,
@@ -201,10 +247,34 @@ export default {
           desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
         },
       ],
+      toggleSearch: false,
     };
+  },
+  computed: {
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.items.filter((result) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every((v) => result.name.toLowerCase().includes(v));
+        });
+      } else {
+        return this.items;
+      }
+    },
   },
   components: {
     // add components
+  },
+  mounted() {
+    document.addEventListener("keyup", function (e) {
+      if (e.keyCode === 27) {
+        this.toggleSearch = false;
+      } else {
+        console.log("nothing happens");
+      }
+    });
   },
 };
 </script>

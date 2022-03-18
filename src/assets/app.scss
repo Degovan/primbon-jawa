@@ -1,3 +1,32 @@
 .txt-center {
   text-align: center;
 }
+
+.height-line {
+  height: 1px;
+}
+
+* {
+  user-select: none;
+}
+
+// global components style
+
+button {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+input {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+a {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+}

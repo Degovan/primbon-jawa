@@ -20,8 +20,8 @@
     "select2": "^4.1.0-rc.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "^3.0.0",
+    "vue-owl-carousel2": "^2.0.7",
     "vue-router": "^4.0.0-0",
-    "vue-select": "^3.16.0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
     "prettier": "^2.2.1",
