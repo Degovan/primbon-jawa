@@ -1,16 +1,29 @@
 <template>
   <div class="home">
-    <div class="modal z-50 w-full h-screen fixed p-9" v-show="toggleSearch">
+    <div
+      ref="modal"
+      class="modal z-50 w-full h-screen fixed p-9"
+      v-show="toggleSearch"
+      @keydown.esc="toggleSearch = !toggleSearch"
+      tabindex="-1"
+    >
       <div
-        class="modal-search bg-secondary border border-secondary mt-8 rounded-md lg:max-w-4xl mx-auto max-w-full"
+        class="modal-search font-nunito bg-secondary border border-secondary mt-8 rounded-md lg:max-w-4xl mx-auto max-w-full"
       >
         <div class="modal-body">
-          <div class="p-3 border-b-2 border-black">
+          <div class="border-b-2 flex border-black bg-chocoprimary">
+            <button class="p-2">
+              <span class="ml-5 text-chocolate"
+                ><fa :icon="['fas', 'search']"
+              /></span>
+            </button>
             <input
               type="search"
-              placeholder="Cari artikel atau lompat ke halaman..."
+              placeholder="Search or exit press (ESC)"
               v-model="searchQuery"
-              class="w-full p-3 rounded-sm bg-transparent text-white"
+              id="search"
+              @blur="searchInput"
+              class="w-full p-5 ml-1 rounded-sm bg-transparent text-white"
             />
           </div>
           <div class="p-3">
@@ -22,6 +35,7 @@
               <router-link
                 :to="result.link"
                 class="block p-4 border-b-2 border-black rounded-sm font-normal hover:text-secondary hover:bg-primary text-gray-200"
+                ><span class="mr-4"><fa :icon="['fas', 'search']" /></span
                 >{{ result.name }}</router-link
               >
             </span>
@@ -166,115 +180,122 @@
 </template>
 
 <script>
-// @ is an alias to /src
+  // @ is an alias to /src
 
-export default {
-  name: "Home",
-  data() {
-    return {
-      searchQuery: null,
-      items: [
-        {
-          id: 1,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 2,
-          name: "Tafsir mimpi",
-          link: "/",
-          desc: "1176 Tafsir Mimpi lengkap, menafsirkan firasat dari arti mimpi anda",
-        },
-        {
-          id: 3,
-          name: "Ramalan Jodoh",
-          link: "/",
-          desc: "Kecocokan jodoh lengkap berdasarkan Kitab Betaljemur Adammakna",
-        },
-        {
-          id: 4,
-          name: "Ramalan Jodoh (Bali)",
-          link: "/",
-          desc: "Kecocokan jodoh berdasarkan wewaran Bali (Pal Sri Sedana)",
-        },
-        {
-          id: 5,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 6,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 7,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 8,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 9,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 10,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 11,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-        {
-          id: 12,
-          name: "Nomor Hape Hoki",
-          link: "/",
-          desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
-        },
-      ],
-      toggleSearch: false,
-    };
-  },
-  computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.items.filter((result) => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(" ")
-            .every((v) => result.name.toLowerCase().includes(v));
-        });
-      } else {
-        return this.items;
-      }
+  export default {
+    name: "Home",
+    data() {
+      return {
+        searchQuery: null,
+        items: [
+          {
+            id: 1,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 2,
+            name: "Tafsir mimpi",
+            link: "/",
+            desc: "1176 Tafsir Mimpi lengkap, menafsirkan firasat dari arti mimpi anda",
+          },
+          {
+            id: 3,
+            name: "Ramalan Jodoh",
+            link: "/",
+            desc: "Kecocokan jodoh lengkap berdasarkan Kitab Betaljemur Adammakna",
+          },
+          {
+            id: 4,
+            name: "Ramalan Jodoh (Bali)",
+            link: "/",
+            desc: "Kecocokan jodoh berdasarkan wewaran Bali (Pal Sri Sedana)",
+          },
+          {
+            id: 5,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 6,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 7,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 8,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 9,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 10,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 11,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+          {
+            id: 12,
+            name: "Nomor Hape Hoki",
+            link: "/",
+            desc: "Cek tingkat hoki nomor HP berdasarkan metode Bagua Shuzi",
+          },
+        ],
+        toggleSearch: false,
+      };
     },
-  },
-  components: {
-    // add components
-  },
-  mounted() {
-    document.addEventListener("keyup", function (e) {
-      if (e.keyCode === 27) {
-        this.toggleSearch = false;
-      } else {
-        console.log("nothing happens");
-      }
-    });
-  },
-};
+    computed: {
+      resultQuery() {
+        if (this.searchQuery) {
+          return this.items.filter((result) => {
+            return this.searchQuery
+              .toLowerCase()
+              .split(" ")
+              .every((v) => result.name.toLowerCase().includes(v));
+          });
+        } else {
+          return this.items;
+        }
+      },
+    },
+    components: {
+      // add components
+    },
+    methods: {
+      searchInput: function (el) {
+        el.focus();
+      },
+    },
+    mounted() {
+      this.$refs.modal.focus();
+      document.querySelector("#search").focus();
+      document.addEventListener("keyup", function (e) {
+        if (e.keyCode === 27) {
+          this.toggleSearch = false;
+        } else {
+          console.log("nothing happens");
+        }
+      });
+    },
+  };
 </script>

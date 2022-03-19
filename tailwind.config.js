@@ -14,6 +14,8 @@ module.exports = {
         primary: "#BA7030",
         secondary: "#1E0F02",
         darkchoco: "#150B03",
+        chocolate: "#482405",
+        chocoprimary: "#301803",
       },
     },
   },
