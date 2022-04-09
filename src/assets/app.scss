@@ -1,0 +1,54 @@
+// fonts
+
+@font-face {
+  font-family: "BluuNext Bold";
+  font-weight: bold;
+  src: url("./font/BluuNext-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "BluuNext Titling";
+  font-weight: bold;
+  src: url("./font/BluuNext-Titling.otf") format("opentype");
+}
+
+.image-slider {
+  height: 550px;
+}
+.swiper-pagination-bullet {
+  background-color: #dcdcdc;
+}
+.swiper-pagination-bullet-active {
+  background: #ffc367;
+}
+.filter-brightness {
+  filter: brightness(0.3);
+}
+.slidePrev-btn,
+.slideNext-btn {
+  border-radius: 100%;
+}
+.image-zoom {
+  transform: scale(1);
+  transition: 50s ease-out;
+}
+.swiper-slide {
+  &.swiper-slide-active {
+    .image-zoom {
+      transform: scale(2);
+    }
+  }
+}
+.swiper-slide {
+  &.swiper-slide-active {
+    .text-heading {
+      animation: fadeInDown 0.5s ease-out;
+    }
+    .text-paragraph {
+      animation: fadeInUp 0.5s ease-out;
+    }
+  }
+}
+
+.slider-animate {
+  transition: 0.4s ease-in;
+}
