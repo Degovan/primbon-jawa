@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="home bg-black h-auto text-white">
     <div class="swiper-box-1 border-b border-secondary lg:mt-0 mt-10">
       <div
@@ -207,7 +208,10 @@
             </h3>
             <h2 class="text-3xl mt-2 font-bluunext">Ramalan Jodoh</h2>
             <p class="mt-3 font-nunito text-gray-400">
-              Kecocokan jodoh lengkap berdasarkan Kitab Betaljemur Adammakna
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nemo
+              ut ex illum maxime accusantium harum dolore soluta nisi omnis ea
+              dolores voluptatibus dicta, cum praesentium ratione laboriosam
+              iusto ad!
             </p>
           </div>
         </div>
@@ -236,7 +240,7 @@
       </div>
       <div class="text-center">
         <button
-          class="lg:px-6 lg:py-3 uppercase px-4 py-3 text-xs mt-20 bg-primary text-black text-center font-normal font-nunito"
+          class="lg:px-6 lg:py-3 uppercase px-4 py-3 text-xs mt-10 bg-primary text-black text-center font-normal font-nunito"
         >
           Lihat Selengkapnya
         </button>
@@ -255,6 +259,7 @@
         class="wrapper-swiper lg:p-0 p-10 max-w-5xl mx-auto lg:mt-10 mt-5 text-center"
       >
         <swiper
+          ref="slideTestimonial"
           :slide-per-view="3"
           :space-between="20"
           :pagination="{ clickable: true }"
@@ -263,13 +268,7 @@
             disableOnInteraction: false,
           }"
           :loop="true"
-          :navigation="{
-            prevEl: '.prev-testi',
-            nextEl: '.next-testi',
-          }"
           :breakpoints="swiperOptions.breakpoints"
-          @swiper="onSwiper"
-          @slideChange="onSlideChange"
         >
           <swiper-slide>
             <div
@@ -342,17 +341,22 @@
           </swiper-slide>
         </swiper>
         <button
+          @click="swiperPrevTesti"
           class="prev-testi lg:px-6 lg:py-3 uppercase px-4 py-3 text-xs mt-10 bg-black hover:bg-primary hover:text-black hover:border-primary border-secondary border text-white font-normal font-nunito"
         >
           prev
         </button>
         <button
+          @click="swiperNextTesti"
           class="next-testi lg:px-6 lg:py-3 ml-5 uppercase px-4 py-3 text-xs mt-10 bg-black hover:bg-primary hover:text-black hover:border-primary border-secondary border text-white font-normal font-nunito"
         >
           next
         </button>
       </div>
     </div>
+  </div>
+  
+
   </div>
 </template>
 
@@ -372,6 +376,14 @@
   SwiperCore.use([Autoplay]);
   export default {
     name: "HomeView",
+    methods: {
+      swiperNextTesti: function () {
+        this.$refs.slideTestimonial.$swiper.slideNext();
+      },
+      swiperPrevTesti: function () {
+        this.$refs.slideTestimonial.$swiper.slidePrev();
+      },
+    },
     components: {
       Swiper,
       SwiperSlide,

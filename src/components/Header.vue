@@ -60,28 +60,26 @@
     </div>
     <transition name="slide-fade" mode="out-in">
       <div
-        class="mobile-menu top-0 z-40 lg:hidden block bg-mobilenav w-full h-screen fixed box-border"
+        class="mobile-menu p-3 top-0 z-40 border-l-2 border-secondary lg:hidden block bg-black w-full h-screen fixed box-border"
         v-show="toggleNav"
       >
-        <button class="float-right mr-4 p-3 mt-2 text-2xl" @click="closeNav">
+        <button class="float-right mr-2 p-3 mt-1 text-2xl" @click="closeNav">
           <Icon icon="la:times" />
         </button>
-        <h2 class="text-primary text-center text-3xl mt-10 font-bluunext">
-          Primbon.
-        </h2>
+        <h2 class="text-primary text-xl mt-0 font-bluunext">Primbon.</h2>
         <div
-          class="mt-5 container max-w-md mx-auto grid font-bold grid-cols-1 text-gray-400 gap-2 font-bluunext text-lg uppercase"
+          class="mt-5 container mx-auto grid font-bold grid-cols-1 text-gray-400 gap-2 font-bluunext text-lg uppercase"
         >
           <router-link
             :to="item.link"
-            class="ml-5 tracking-wide hover:text-black p-2 hover:bg-primary"
+            class="tracking-wide hover:text-black p-2 hover:bg-primary"
             v-for="item in menuLeft"
             :key="item.name"
             >{{ item.name }}</router-link
           >
           <router-link
             :to="item.link"
-            class="tracking-wide hover:text-black p-2 hover:bg-primary ml-5"
+            class="tracking-wide hover:text-black p-2 hover:bg-primary"
             v-for="item in menuRight"
             :key="item.name"
             >{{ item.name }}</router-link
@@ -123,7 +121,7 @@
           },
           {
             name: "WETON ",
-            link: "/",
+            link: "/weton",
           },
         ],
         menuRight: [

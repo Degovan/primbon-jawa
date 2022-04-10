@@ -5261,10 +5261,10 @@
     "picocolors" "^1.0.0"
     "stable" "^0.1.8"
 
-"swiper@^8.0.7":
-  "integrity" "sha512-GHjDfxSZdupfU7LrSVOpaNaT7R1D2zxopPGBFz1UOXOtsYvVJLg0k6NvkTAD7qn0ASl5pTti82qoYwvYvIkg4g=="
-  "resolved" "https://registry.npmjs.org/swiper/-/swiper-8.0.7.tgz"
-  "version" "8.0.7"
+"swiper@^7.0.0  || ^8.0.0", "swiper@^8.1.0":
+  "integrity" "sha512-Py2vuk7Nb3xlZMB2e201DQkjslTb6Uaju6wvr4BB7VjWrouSZegA0QjbxDVheJOsbKMUV092iDL3kymPBbuVzw=="
+  "resolved" "https://registry.npmjs.org/swiper/-/swiper-8.1.0.tgz"
+  "version" "8.1.0"
   dependencies:
     "dom7" "^4.0.4"
     "ssr-window" "^4.0.2"
@@ -5485,6 +5485,11 @@
   "integrity" "sha1-IpnwLG3tMNSllhsLn3RSShj2NPw="
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
+
+"vue-awesome-swiper@^5.0.1":
+  "integrity" "sha512-mWjFJzUqA4lG+DmsmibvMpoiBnl+IH2SSeiiQ3i5M0t1y9FknTxnGT0DsMb2YdJLgjYMEK3sYOWzqgLnZMH8Lg=="
+  "resolved" "https://registry.npmjs.org/vue-awesome-swiper/-/vue-awesome-swiper-5.0.1.tgz"
+  "version" "5.0.1"
 
 "vue-cli-plugin-tailwind@~3.0.0":
   "integrity" "sha512-bUWjfwGtJCeBU7pL4lD86RC+HsJAmAlYqr8e65NGC3q/ZBzC9KQs1Iy/vTyfDTnB7ZJm3huB+1a/m+17fdMZ8A=="
