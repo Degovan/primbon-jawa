@@ -12,7 +12,8 @@ module.exports = {
     },
     colors: ({ colors }) => ({
       primary: "#FFC367",
-      secondary: "#1E0F02",
+      mobilenav: "#1B1A1A",
+      secondary: "#3B3B3B",
       darkchoco: "#150B03",
       chocolate: "#482405",
       chocoprimary: "#301803",

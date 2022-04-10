@@ -10,7 +10,26 @@
   font-weight: bold;
   src: url("./font/BluuNext-Titling.otf") format("opentype");
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
 
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+header {
+  animation: headerOpacity 1s ease;
+}
+@keyframes headerOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .image-slider {
   height: 550px;
 }
@@ -31,24 +50,51 @@
   transform: scale(1);
   transition: 50s ease-out;
 }
-.swiper-slide {
-  &.swiper-slide-active {
-    .image-zoom {
-      transform: scale(2);
-    }
-  }
-}
-.swiper-slide {
-  &.swiper-slide-active {
-    .text-heading {
-      animation: fadeInDown 0.5s ease-out;
-    }
-    .text-paragraph {
-      animation: fadeInUp 0.5s ease-out;
+.swiper-box-1 {
+  .swiper-slide {
+    &.swiper-slide-active {
+      .image-zoom {
+        transform: scale(2);
+      }
+      .text-heading {
+        animation: fadeInDown 0.5s ease-out;
+      }
+      .text-paragraph {
+        animation: fadeInUp 0.5s ease-out;
+      }
     }
   }
 }
 
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.image-this-page {
+  img {
+    max-width: 250px;
+    width: 100%;
+  }
+}
 .slider-animate {
   transition: 0.4s ease-in;
+}
+
+.card-testimonial {
+  .profile-info {
+    img {
+      max-width: 40px;
+      height: 40px;
+    }
+  }
 }
