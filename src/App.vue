@@ -1,12 +1,18 @@
 <template>
   <div class="app bg-black">
-    <Header />
+    <div>
+      <transition name="fade" mode="out-in">
+        <Header />
+      </transition>
+    </div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
-    <Footer />
+    <div v-if="!$route.meta.hideNavigation">
+      <Footer />
+    </div>
   </div>
 </template>
 

@@ -68,14 +68,25 @@
         </p>
       </div>
     </div>
+    <!-- Testimoni -->
+    <div
+      class=""
+      data-aos="fade-in"
+      data-aos-duration="1500"
+      data-aos-once="true"
+    >
+      <TestimoniView />
+    </div>
   </div>
 </template>
 
 <script>
+  import TestimoniView from "@/components/Testimoni";
   import Banner from "@/components/Banner";
   export default {
     components: {
       Banner,
+      TestimoniView,
     },
   };
 </script>

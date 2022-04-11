@@ -66,7 +66,9 @@
         <button class="float-right mr-2 p-3 mt-1 text-2xl" @click="closeNav">
           <Icon icon="la:times" />
         </button>
-        <h2 class="text-primary text-xl mt-0 font-bluunext">Primbon.</h2>
+        <router-link to="/" exact>
+          <h2 class="text-primary text-xl mt-0 font-bluunext">Primbon.</h2>
+        </router-link>
         <div
           class="mt-5 container mx-auto grid font-bold grid-cols-1 text-gray-400 gap-2 font-bluunext text-lg uppercase"
         >
@@ -106,6 +108,12 @@
         document.body.style.overflow = "auto";
       },
     },
+    watch: {
+      $route: function () {
+        this.toggleNav = false;
+        document.body.style.overflow = "auto";
+      },
+    },
     data() {
       return {
         toggleNav: false,
@@ -116,7 +124,7 @@
           },
           {
             name: "KONSULTASI",
-            link: "/",
+            link: "/konsultasi",
             right: true,
           },
           {
@@ -127,18 +135,18 @@
         menuRight: [
           {
             name: "TESTIMONI",
-            link: "/",
+            link: "/testimoni",
             right: false,
           },
           {
             name: "KALENDER",
-            link: "/",
+            link: "/kalender",
             right: true,
           },
 
           {
             name: "CONTACT",
-            link: "/",
+            link: "/contact",
             right: true,
           },
         ],

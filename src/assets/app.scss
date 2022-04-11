@@ -65,7 +65,17 @@ header {
     }
   }
 }
-
+.exact-active {
+  // background: #4f46e5;
+  color: #fff;
+  &:hover {
+    color: #f2f2f2;
+  }
+}
+.swiperElement {
+  width: 600px;
+  height: 300px;
+}
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
