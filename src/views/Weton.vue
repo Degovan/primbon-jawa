@@ -84,6 +84,8 @@
         <h2>Tanggal Hijriah : {{ this.hijriah }}</h2>
         <h2>Tanggal Jawa : {{ this.jawa }}</h2>
         <h2>Pasaran : {{ this.pasaran }}</h2>
+        <h2>Neptu : {{ this.neptu }}</h2>
+        <h2>Warsa : {{ this.warsa }}</h2>
       </div>
       <p class="mt-5">{{ this.description }}</p>
     </div>
@@ -374,11 +376,7 @@
           const x = hijri.initialize();
           var first_date = new Date(y, bulan, d);
           var first_h = x.toHijri(
-            first_date.getDay() +
-              "/" +
-              first_date.getMonth() +
-              "/" +
-              first_date.getFullYear(),
+            d + "/" + first_date.getMonth() + "/" + first_date.getFullYear(),
             "/"
           );
           console.log(first_h);
@@ -396,10 +394,15 @@
               // proses hitung tanggal hijriah
               // console.log(d + " " + hijri_month[m - 1] + " " + y + " Hijriah");
               this.hijriah =
-                d + " " + hijri_month[first_h.month - 1] + " " + y + " H";
+                first_h.day +
+                " " +
+                hijri_month[first_h.month - 1] +
+                " " +
+                y +
+                " H";
               // proses hitung tanggal jawa
               this.jawa =
-                d +
+                first_h.day +
                 " " +
                 java_months[first_h.month - 1] +
                 " " +
