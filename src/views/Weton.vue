@@ -379,8 +379,11 @@
             d + "/" + first_date.getMonth() + "/" + first_date.getFullYear(),
             "/"
           );
-          console.log(first_h);
-          var first_tj = tahunjawa[y - 1435 - Math.floor((y - 1435) / 8) * 8];
+
+          var first_tj =
+            tahunjawa[
+              first_h.year - 1435 - Math.floor((first_h.year - 1435) / 8) * 8
+            ];
           // mencari array dataweton
           for (var i = 0; i < dataweton.length; i++) {
             if (dayName + " " + pancawaraName === dataweton[i][0]) {
