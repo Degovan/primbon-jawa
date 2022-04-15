@@ -1,15 +1,21 @@
 <template>
   <div>
     <Banner titleBanner="Kalender Jawa" subtitleBanner="Primbon / Kalender" />
-    <v-calendar is-expanded />
-
-    <!-- Testimoni -->
     <div
-      class=""
-      data-aos="fade-in"
-      data-aos-duration="1500"
-      data-aos-once="true"
+      class="max-w-5xl mt-20 mx-auto grid lg:grid-cols-2 grid-cols-1 p-5 gap-4 box-border"
     >
+      <div class="calendar">
+        <Calendar
+          :attributes="attr"
+          color="orange"
+          is-dark
+          @dayclick="onDayClick"
+        />
+      </div>
+      <div class="sign"></div>
+    </div>
+    <!-- Testimoni -->
+    <div class="">
       <TestimoniView />
     </div>
   </div>
@@ -17,15 +23,34 @@
 
 <script>
   import { Calendar, DatePicker } from "v-calendar";
-
+  import "v-calendar/dist/style.css";
   import TestimoniView from "@/components/Testimoni";
   import Banner from "@/components/Banner";
   export default {
+    data() {
+      return {
+        range: {
+          start: new Date(2020, 0, 1),
+          end: new Date(2020, 0, 5),
+        },
+        days: [],
+        attr: {
+          key: "today",
+          date: new Date(),
+        },
+      };
+    },
+
     components: {
-      Banner,
       TestimoniView,
+      Banner,
       Calendar,
       DatePicker,
+    },
+    methods: {
+      onDayClick: function (day) {
+        console.log(day);
+      },
     },
     data() {
       return {

@@ -11,6 +11,8 @@
     "autoprefixer": "^10",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "hijri-js": "^1.0.25",
+    "javanese-weton": "^1.0.1",
     "postcss": "^8",
     "swiper": "^8.1.0",
     "tailwindcss": "^3",

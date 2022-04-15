@@ -3214,6 +3214,11 @@
   "resolved" "https://registry.npmjs.org/highlight.js/-/highlight.js-10.7.3.tgz"
   "version" "10.7.3"
 
+"hijri-js@^1.0.25":
+  "integrity" "sha1-UUXXoUcZSq5apRYpOimmo5x2pOk="
+  "resolved" "https://registry.npmjs.org/hijri-js/-/hijri-js-1.0.25.tgz"
+  "version" "1.0.25"
+
 "hosted-git-info@^2.1.4":
   "integrity" "sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw=="
   "resolved" "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.9.tgz"
@@ -3508,6 +3513,11 @@
   "integrity" "sha1-TkMekrEalzFjaqH5yNHMvP2reN8="
   "resolved" "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
   "version" "3.0.1"
+
+"javanese-weton@^1.0.1":
+  "integrity" "sha512-rioYRW6Lu8DOfCMx7QZeFS2K3nIS2uc3z1OhN8afgF3LeJ70pBk+JXHjWA8e7zuREprEz/HrezTyc7KRUEaDQw=="
+  "resolved" "https://registry.npmjs.org/javanese-weton/-/javanese-weton-1.0.1.tgz"
+  "version" "1.0.1"
 
 "javascript-stringify@^2.0.1":
   "integrity" "sha512-JVAfqNPTvNq3sB/VHQJAFxN/sPgKnsKrCwyRt15zwNCdrMMJDdcEOdubuy+DuJYYdm0ox1J4uzEuYKkN+9yhVg=="
