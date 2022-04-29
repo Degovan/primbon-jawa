@@ -123,7 +123,6 @@
     },
     methods: {
       wetongan: function () {
-        this.showWeton = true;
         var d = this.days;
         var m = this.month;
         var y = this.years;
@@ -132,7 +131,21 @@
         if (y % 4 == 0) {
           max_date = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         }
-        if (no_date <= max_date[this.month]) {
+        if (no_date == "") {
+          alert("tanggal masih kosong isi dulu!");
+          this.showWeton = false;
+        } else if (y == "") {
+          alert("tahun masih kosong isi dulu!");
+          this.showWeton = false;
+        } else if (no_date != parseInt(no_date) || y != parseInt(y)) {
+          if (no_date != parseInt(no_date)) {
+            alert("Masukan tanggal dengan angka ya!");
+          } else if (y != parseInt(y)) {
+            alert("Masukan tahun dengan angka ya!");
+          } else {
+          }
+        } else if (no_date <= max_date[this.month]) {
+          this.showWeton = true;
           let gregorianDate = new Date(y, m, d);
           // console.log(getWeton(gregorianDate));
           var wetonJson = getWeton(gregorianDate);

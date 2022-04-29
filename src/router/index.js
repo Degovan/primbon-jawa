@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import WetonView from "../views/Weton.vue";
 import KalenderView from "../views/Kalender.vue";
+import TerjemahanView from "../views/Terjemahan.vue";
 import NotFound from "../views/page-error/404.vue";
 
 const routes = [
@@ -25,6 +26,13 @@ const routes = [
     component: KalenderView,
     meta: { title: "Kalender | Primbon" },
   },
+  {
+    path: "/Terjemahan",
+    name: "Terjemahan",
+    component: KalenderView,
+    meta: { title: "Terjemahan Indonesia ke jawa | Primbon" },
+  },
+
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",

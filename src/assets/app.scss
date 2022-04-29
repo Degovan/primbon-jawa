@@ -108,3 +108,16 @@ header {
     }
   }
 }
+
+.table-calendar {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-calendar td,
+.table-calendar th {
+  padding: 10px;
+  border: 1px solid #3b3b3b;
+  text-align: center;
+  vertical-align: top;
+}
