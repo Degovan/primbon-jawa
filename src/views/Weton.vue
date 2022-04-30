@@ -389,7 +389,11 @@
           const x = hijri.initialize();
           var first_date = new Date(y, bulan, d);
           var first_h = x.toHijri(
-            d + "/" + first_date.getMonth() + "/" + first_date.getFullYear(),
+            first_date.getDate() +
+              "/" +
+              first_date.getMonth() +
+              "/" +
+              first_date.getFullYear(),
             "/"
           );
 

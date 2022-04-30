@@ -1,12 +1,29 @@
 <template>
   <div>
     <Banner titleBanner="Kalender Jawa" subtitleBanner="Primbon / Kalender" />
-    <div class="max-w-5xl mt-20 mx-auto p-5 gap-4 box-border">
+    <div class="max-w-5xl mt-20 mx-auto p-5 box-border">
       <div class="calendar w-full box-border h-auto">
         <div class="calendar-head p-5 bg-black text-primary">
           <div class="flex justify-between items-center">
             <div class="flex-auto w-full">
-              <button class="text-left ml-4">Prev</button>
+              <button class="text-left ml-4" @click="previous">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <g transform="rotate(180 12 12)">
+                    <path
+                      fill="currentColor"
+                      d="M4.8 21.57L7.222 24L19.2 12L7.222 0L4.8 2.43L14.347 12z"
+                    />
+                  </g>
+                </svg>
+              </button>
             </div>
             <div class="flex-auto text-center w-full">
               <h2
@@ -19,13 +36,30 @@
               <p>{{ this.infodate }}</p>
             </div>
             <div class="flex-auto w-full">
-              <button class="float-right mr-4">Next</button>
+              <button class="float-right mr-4" @click="next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="1em"
+                  height="1em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <g transform="rotate(180 12 12)">
+                    <path
+                      fill="currentColor"
+                      d="M19.2 2.43L16.778 0L4.8 12l11.978 12l2.422-2.43L9.653 12z"
+                    />
+                  </g>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
-        <div class="calendar-body w-full box-border h-96">
+        <div class="calendar-body w-full box-border">
           <table
-            class="table-calendar p-2 border-collapse w-full text-white"
+            class="table-calendar p-2 border-collapse w-full text-gray-400"
             id="calendar"
             data-lang="en"
           >
@@ -33,26 +67,50 @@
             <tbody id="calendar-body"></tbody>
           </table>
           <div class="calendar-footer w-full p-5">
-            <label for="month">Jump To: </label>
-            <select id="month" @change="jumpTo">
-              <option value="0">Jan</option>
-              <option value="1">Feb</option>
-              <option value="2">Mar</option>
-              <option value="3">Apr</option>
-              <option value="4">May</option>
-              <option value="5">Jun</option>
-              <option value="6">Jul</option>
-              <option value="7">Aug</option>
-              <option value="8">Sep</option>
-              <option value="9">Oct</option>
-              <option value="10">Nov</option>
-              <option value="11">Dec</option>
-            </select>
-            <select id="year" @change="jumpTo"></select>
+            <div class="mt-1 mr-10 lg:float-right float-none">
+              <label for="libur" class="text-gray-400">Hari libur : </label>
+              <br />
+              <div
+                class="mt-3"
+                v-for="items in holiday"
+                :key="items.holiday_date"
+              >
+                <p class="text-gray-400">
+                  {{ items.holiday_date.substr(8) }} : {{ items.holiday_name }}
+                </p>
+              </div>
+            </div>
+            <p class="text-gray-400 lg:mt-0 mt-10">Lompat tanggal :</p>
+            <div class="flex max-w-sm mt-5">
+              <select
+                id="month"
+                class="w-full p-2 bg-black border border-secondary text-gray-400 text-sm"
+                @change="jumpTo"
+              >
+                <option value="0">Jan</option>
+                <option value="1">Feb</option>
+                <option value="2">Mar</option>
+                <option value="3">Apr</option>
+                <option value="4">May</option>
+                <option value="5">Jun</option>
+                <option value="6">Jul</option>
+                <option value="7">Aug</option>
+                <option value="8">Sep</option>
+                <option value="9">Oct</option>
+                <option value="10">Nov</option>
+                <option value="11">Dec</option>
+              </select>
+              <select
+                id="year"
+                class="w-full ml-4 p-2 bg-black border border-secondary text-gray-400 text-sm"
+                @change="jumpTo"
+              ></select>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <br /><br />
     <!-- Testimoni -->
     <div class="">
       <TestimoniView />
@@ -69,6 +127,8 @@
   export default {
     data() {
       return {
+        holiday: [],
+        libur: false,
         sYear: "",
         sMonth: "",
         cYear: "",
@@ -88,13 +148,33 @@
     },
 
     methods: {
+      next: function () {
+        this.cYear = this.cMonth === 11 ? this.cYear + 1 : this.cYear;
+        this.cMonth = (this.cMonth + 1) % 12;
+        this.showCalendar(this.cMonth, this.cYear);
+      },
+
+      previous: function () {
+        this.cYear = this.cMonth == 0 ? this.cYear - 1 : this.cYear;
+        this.cMonth = this.cMonth === 0 ? 11 : this.cMonth - 1;
+        this.showCalendar(this.cMonth, this.cYear);
+      },
+      getLibur: function (month, year) {
+        return fetch(
+          `https://api-harilibur.vercel.app/api?month=${month}&year=${year}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            return data;
+          });
+      },
       jumpTo: function () {
         this.cYear = parseInt(this.sYear.value);
         this.cMonth = parseInt(this.sMonth.value);
         this.showCalendar(this.cMonth, this.cYear);
         console.log(this.cYear, this.cMonth);
       },
-      showCalendar: function (month, year) {
+      showCalendar: async function (month, year) {
         var bulan = [
           "Januari",
           "Februari",
@@ -140,20 +220,33 @@
         this.sYear.value = year;
         this.sMonth.value = month;
 
+        const hariLiburs = (await this.getLibur(month + 1, year)).filter(
+          (libur) => libur.is_national_holiday == true
+        );
+        this.holiday = hariLiburs;
+        const hariLibur = hariLiburs.map((libur) => libur.holiday_date);
+
         // creating all cells
         var date = 1;
         for (var i = 0; i < 6; i++) {
           var row = document.createElement("tr");
 
           for (var j = 0; j < 7; j++) {
-            const weton = getWeton(new Date(year, month, date));
-            console.log(weton);
-
-            const x = hijri.initialize();
+            var weton = getWeton(new Date(year, month, date));
+            // console.log(weton);
             var first_date = new Date(year, month, date);
-            var first_h = x.toHijri(
+            var fmonth = first_date.getMonth() + 1;
+            const isLibur = hariLibur.includes(
+              `${first_date.getFullYear()}-${
+                fmonth < 10 ? "0" + fmonth : fmonth
+              }-${first_date.getDate()}`
+            );
+            console.log(isLibur, first_date.getDate());
+            this.libur = isLibur;
+            const isMinggu = first_date.getDay() == 0;
+            const x = hijri.initialize();
+            const first_h = x.toHijri(
               first_date.getDate() +
-                2 +
                 "/" +
                 first_date.getMonth() +
                 "/" +
@@ -175,7 +268,11 @@
               cell.setAttribute("data-month_name", this.months[month]);
               cell.className =
                 "date-picker cursor-pointer hover:bg-primary hover:text-black";
-              cell.innerHTML = `<span class='font-bluunext'> ${date} <br/> <span class='text-xs font-nunito'>${first_h.day}   ${weton.wetonName.pancawara}</span>   
+              cell.innerHTML = `<span class='font-bluunext text-xl ${
+                isLibur || isMinggu ? "text-primary" : null
+              }'> ${date} <br/> <span class='text-xs font-nunito'>${
+                first_h.day
+              }   ${weton.wetonName.pancawara}</span>
                 </span>`;
 
               if (
@@ -199,22 +296,6 @@
       },
     },
     async mounted() {
-      var axios = require("axios");
-
-      var config = {
-        method: "get",
-        url: "https://api-harilibur.vercel.app/api?month=8&year=2021",
-        headers: {},
-      };
-
-      axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
       function generate_year_range(start, end) {
         var years = "";
         for (var year = start; year <= end; year++) {
@@ -263,18 +344,6 @@
       document.getElementById("thead-month").innerHTML = $dataHead;
 
       this.showCalendar(this.cMonth, this.cYear);
-
-      function next() {
-        currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
-        currentMonth = (currentMonth + 1) % 12;
-        showCalendar(currentMonth, currentYear);
-      }
-
-      function previous() {
-        currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-        currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-        showCalendar(currentMonth, currentYear);
-      }
     },
   };
 </script>
