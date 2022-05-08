@@ -17,7 +17,7 @@
           <option value="4">indonesia ke jawa (Krama Lugu)</option>
         </select>
         <br /><br />
-        <div class="wrapper-translate flex gap-5">
+        <div class="wrapper-translate lg:flex grid grid-cols-1 gap-5">
           <textarea
             name=""
             id="kotakkalimat"
@@ -32,7 +32,7 @@
             class="w-full p-4 border bg-black border-secondary h-96 resize-none text-gray-400 outline-none"
             placeholder="Terjemahannya.."
             readonly
-            >{{ this.translategan }}</textarea
+            >{{ this.hasiltranslate }}</textarea
           >
         </div>
       </form>
