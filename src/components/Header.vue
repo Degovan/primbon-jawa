@@ -134,8 +134,8 @@
         ],
         menuRight: [
           {
-            name: "TESTIMONI",
-            link: "/testimoni",
+            name: "TERJEMAHAN",
+            link: "/terjemahan",
             right: false,
           },
           {

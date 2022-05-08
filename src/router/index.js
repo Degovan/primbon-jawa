@@ -27,9 +27,9 @@ const routes = [
     meta: { title: "Kalender | Primbon" },
   },
   {
-    path: "/Terjemahan",
+    path: "/terjemahan",
     name: "Terjemahan",
-    component: KalenderView,
+    component: TerjemahanView,
     meta: { title: "Terjemahan Indonesia ke jawa | Primbon" },
   },
 

@@ -70,6 +70,9 @@
             <div class="mt-1 mr-10 lg:float-right float-none">
               <label for="libur" class="text-gray-400">Hari libur : </label>
               <br />
+              <p v-if="holiday.length < 1" class="text-white">
+                Tidak ada hari libur dibulan ini.
+              </p>
               <div
                 class="mt-3"
                 v-for="items in holiday"
