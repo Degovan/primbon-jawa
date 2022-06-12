@@ -123,12 +123,12 @@
             link: "/",
           },
           {
-            name: "KONSULTASI",
-            link: "/konsultasi",
+            name: "HALAMAN",
+            link: "/pages",
             right: true,
           },
           {
-            name: "WETON ",
+            name: "WETON",
             link: "/weton",
           },
         ],

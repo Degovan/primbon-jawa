@@ -2,7 +2,15 @@
   <div>
     <Banner titleBanner="Terjemahan" subtitleBanner="Primbon / Terjemahan" />
     <div class="max-w-5xl mt-20 mx-auto p-5 box-border">
-      <p class="text-gray-400">Pilih bahasa :</p>
+      <h2 class="text-2xl text-primary font-bluunext">
+        Terjemahan Indonesia ke Jawa
+      </h2>
+      <p class="text-sm text-gray-300">
+        Fitur terjemahan ini bisa menerjemahkan indonesia ke jawa ke krama
+        (ngoko, alus, lugu)
+      </p>
+
+      <p class="text-gray-400 mt-5">Pilih bahasa :</p>
       <br />
       <form action="" name="translate">
         <select
@@ -45,10 +53,8 @@
 
 <script>
   const terjemahan = require("../helper/translategan.js");
-  import { getWeton } from "javanese-weton";
   import TestimoniView from "@/components/Testimoni";
   import Banner from "@/components/Banner";
-  const hijri = require("hijri-js");
   export default {
     components: {
       Banner,

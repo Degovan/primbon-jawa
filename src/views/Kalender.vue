@@ -175,7 +175,7 @@
         this.cYear = parseInt(this.sYear.value);
         this.cMonth = parseInt(this.sMonth.value);
         this.showCalendar(this.cMonth, this.cYear);
-        console.log(this.cYear, this.cMonth);
+        // console.log(this.cYear, this.cMonth);
       },
       showCalendar: async function (month, year) {
         var bulan = [
@@ -244,7 +244,7 @@
                 fmonth < 10 ? "0" + fmonth : fmonth
               }-${first_date.getDate()}`
             );
-            console.log(isLibur, first_date.getDate());
+            // console.log(isLibur, first_date.getDate());
             this.libur = isLibur;
             const isMinggu = first_date.getDay() == 0;
             const x = hijri.initialize();

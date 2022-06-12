@@ -4,6 +4,8 @@ import WetonView from "../views/Weton.vue";
 import KalenderView from "../views/Kalender.vue";
 import TerjemahanView from "../views/Terjemahan.vue";
 import NotFound from "../views/page-error/404.vue";
+import Pages from "../views/Pages.vue";
+import PagePost from "../views/PagePost.vue";
 
 const routes = [
   {
@@ -15,10 +17,22 @@ const routes = [
     },
   },
   {
+    path: "/pages",
+    name: "pages",
+    component: Pages,
+    meta: { title: "Halaman | Primbon" },
+  },
+  {
     path: "/weton",
     name: "weton",
     component: WetonView,
     meta: { title: "Weton | Primbon" },
+  },
+  {
+    path: "/page-post/:pagetype/:slug",
+    name: "post-page",
+    component: PagePost,
+    meta: { title: "Memuat Halaman..." },
   },
   {
     path: "/kalender",

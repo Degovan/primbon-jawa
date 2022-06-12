@@ -435,19 +435,19 @@
             }
           }
           if (dayName + " " + pancawaraName === "Tidak Ada") {
-            console.log(dayName + " " + pancawaraName + ": Tidak ada hasil");
+            // console.log(dayName + " " + pancawaraName + ": Tidak ada hasil");
             alert(dayName + " " + pancawaraName + ": Tidak ada hasil");
           }
           return dataweton[i];
         } else {
           this.showWeton = false;
-          console.log(
-            "Maaf bulan " +
-              this.month +
-              " " +
-              "tidak memiliki tanggal " +
-              this.days
-          );
+          // console.log(
+          //   "Maaf bulan " +
+          //     this.month +
+          //     " " +
+          //     "tidak memiliki tanggal " +
+          //     this.days
+          // );
           alert(
             "Maaf bulan " +
               this.month +
