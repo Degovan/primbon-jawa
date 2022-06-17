@@ -39,8 +39,9 @@
               <option value="6">Juli</option>
               <option value="7">Agustus</option>
               <option value="8">September</option>
-              <option value="9">November</option>
-              <option value="10">Desember</option>
+              <option value="9">Oktober</option>
+              <option value="10">November</option>
+              <option value="11">Desember</option>
             </select>
           </div>
           <div class="input-box mt-5">

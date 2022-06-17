@@ -1,9 +1,7 @@
 <template>
   <div class="app bg-black">
-    <div>
-      <transition name="fade" mode="out-in">
-        <Header />
-      </transition>
+    <div v-if="!$route.meta.hideNavigation">
+      <Header />
     </div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
@@ -24,5 +22,7 @@
       Header,
       Footer,
     },
+
+    mounted() {},
   };
 </script>

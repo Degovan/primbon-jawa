@@ -4,20 +4,25 @@
     <div class="wrapper-card mt-5 flex gap-10 max-w-5xl mx-auto">
       <div class="flex-auto">
         <div class="article border border-secondary">
-          <div class="article-image">
+          <div class="article-image" v-if="this.icon.length > 0">
             <img
-              :src="imageAssets('image-45-copyright-min-800x508.jpg')"
-              class="w-full"
+              :src="this.icon"
+              class="w-full text-white"
+              alt="can't display this image"
             />
           </div>
           <div class="article-body p-5">
-            <h2 class="text-primary text-lg font-bluunext">24 Apr 2022</h2>
-            <article class="space-y-4 mt-5">
-              <h1 class="text-2xl font-bold font-bluunext text-white">
-                {{ this.title }}
-              </h1>
-              <p>{{ this.description }}</p>
-            </article>
+            <h2 class="text-primary text-sm font-nunito">
+              Di post pada {{ this.createAt }}
+            </h2>
+
+            <h1 class="text-2xl font-bold font-bluunext text-white">
+              {{ this.title }}
+            </h1>
+            <p
+              class="text-white mt-5 font-nunito"
+              v-html="this.description"
+            ></p>
           </div>
         </div>
       </div>
@@ -46,6 +51,7 @@
         short_description: "",
         slug: "",
         description: "",
+        article: "",
       };
     },
     components: {
@@ -60,7 +66,7 @@
           )
           .then((response) => {
             var query = response.data.data;
-            this.icon = query.icon;
+            this.icon = "http://107.172.29.252:2022/favicon/" + query.icon;
             this.page_type =
               "Home / Halaman /" + query.page_type + "/" + query.slug;
             this.title = query.title;
@@ -69,6 +75,15 @@
             this.description = query.description;
             document.title = query.title + " - Halaman Primbon";
             document.description = query.short_description;
+            var date = new Date(query.created_at);
+            const favicon = document.getElementById("favicon");
+            favicon.href = this.icon;
+            this.createAt =
+              date.getFullYear() +
+              "-" +
+              (date.getMonth() + 1) +
+              "-" +
+              date.getDate();
           })
           .catch((error) => {
             console.log(error);
