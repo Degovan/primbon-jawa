@@ -1,57 +1,69 @@
 <template>
   <div class="page">
-    <Banner titleBanner="Semua Halaman" subtitleBanner="Home / Semua Halaman" />
-    <div class="p-10">
-      <div class="container mx-auto max-w-5xl">
-        <div
-          class="wrapper grid grid-cols-1 gap-5 mt-10 lg:max-w-5xl mx-auto max-w-full container"
-        >
+    <div class="page-error" v-if="this.error == true">
+      <ErrorPage />
+    </div>
+    <div class="page-show" v-else>
+      <Banner
+        titleBanner="Semua Halaman"
+        subtitleBanner="Home / Semua Halaman"
+      />
+      <div class="p-10">
+        <div class="container mx-auto max-w-5xl">
           <div
-            class="card lg:flex block w-full gap-5 p-3 border-b border-secondary"
-            v-for="item in pageList[page - 1]"
-            :key="item.id"
+            class="wrapper grid grid-cols-1 gap-5 mt-10 lg:max-w-5xl mx-auto max-w-full container"
           >
-            <div class="flex-auto border border-secondary">
-              <img
-                :src="imageAssets('image-45-copyright-min-800x508.jpg')"
-                class="lg:w-64 w-full"
-              />
+            <div
+              v-if="this.pageList.length > 0"
+              class="card lg:flex block w-full gap-5 p-3 border-b border-secondary"
+              v-for="item in pageList[page - 1]"
+              :key="item.id"
+            >
+              <div class="flex-auto border border-secondary">
+                <img
+                  :src="imageAssets('image-45-copyright-min-800x508.jpg')"
+                  class="lg:w-64 w-full"
+                />
+              </div>
+              <div class="flex-auto w-full lg:mt-0 mt-5">
+                <h3 class="text-sm text-primary font-nunito font-medium">
+                  01 Apr 22 - Oleh {{ item.title }}
+                </h3>
+                <a
+                  :href="
+                    $router.resolve({
+                      name: 'post-page',
+                      params: { pagetype: item.page_type, slug: item.slug },
+                    }).href
+                  "
+                >
+                  <h2 class="text-3xl mt-2 font-bluunext text-white">
+                    {{ item.page_type }}
+                  </h2>
+                </a>
+                <p class="mt-3 font-nunito text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  nemo ut ex illum maxime accusantium harum dolore soluta nisi
+                  omnis ea dolores voluptatibus dicta, cum praesentium ratione
+                  laboriosam iusto ad!
+                </p>
+              </div>
             </div>
-            <div class="flex-auto w-full lg:mt-0 mt-5">
-              <h3 class="text-sm text-primary font-nunito font-medium">
-                01 Apr 22 - Oleh {{ item.title }}
-              </h3>
-              <a
-                :href="
-                  $router.resolve({
-                    name: 'post-page',
-                    params: { pagetype: item.page_type, slug: item.slug },
-                  }).href
-                "
+            <div class="loading font-nunito text-gray-400" v-else>
+              <p>Memuat...</p>
+            </div>
+            <div class="mt-5">
+              <pagination
+                :total-pages="totalPages"
+                :total="total"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :has-more-pages="hasMorePages"
+                @pagechanged="showMore"
               >
-                <h2 class="text-3xl mt-2 font-bluunext text-white">
-                  {{ item.page_type }}
-                </h2>
-              </a>
-              <p class="mt-3 font-nunito text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                nemo ut ex illum maxime accusantium harum dolore soluta nisi
-                omnis ea dolores voluptatibus dicta, cum praesentium ratione
-                laboriosam iusto ad!
-              </p>
+              </pagination>
             </div>
           </div>
-        </div>
-        <div class="mt-5">
-          <pagination
-            :total-pages="totalPages"
-            :total="total"
-            :per-page="perPage"
-            :current-page="currentPage"
-            :has-more-pages="hasMorePages"
-            @pagechanged="showMore"
-          >
-          </pagination>
         </div>
       </div>
     </div>
@@ -59,6 +71,7 @@
 </template>
 
 <script>
+  import ErrorPage from "@/components/neterror";
   import Pagination from "@/components/Pagination";
   import axios from "axios";
   import TestimoniView from "@/components/Testimoni";
@@ -74,12 +87,14 @@
         perPage: 4,
         currentPage: 1,
         hasMorePages: true,
+        error: false,
       };
     },
     components: {
       TestimoniView,
       Banner,
       Pagination,
+      ErrorPage,
     },
     methods: {
       showMore(page) {
@@ -99,11 +114,10 @@
           .then((response) => {
             this.pageList = this.chunk(response.data.data, this.perPage);
             this.totalPages = this.pageList.length;
-            // console.log();
+            this.error = false;
           })
           .catch((error) => {
-            console.log(error);
-            confirm("Kesalahan pada server : " + error);
+            this.error = true;
           });
       } catch (e) {
         alert(e);

@@ -3,10 +3,10 @@
     <br />
     <div class="mt-40">
       <h2 class="text-4xl text-primary mt-0 font-bluunext">
-        Halaman Tidak Ditemukan!
+        Opps!, endpoint cannot be reach
       </h2>
       <p class="font-nunito text-gray-400 text-xs mt-10">
-        Err request: 404 not found
+        Err response: ERR_CONNECTION_TIMED_OUT
       </p>
       <button
         @click="func"

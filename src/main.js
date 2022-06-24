@@ -25,7 +25,8 @@ app.component("DatePicker", DatePicker);
 
 app.mount("#app");
 
-app.config.globalProperties.$baseURL = "http://107.172.29.252:2022/api/v1/";
+app.config.globalProperties.$baseURL =
+  "https://backend.primbonjawa.net/api/v1/";
 app.config.globalProperties.imageAssets = (imageName) =>
   require("@/assets/img/" + imageName);
 app.config.globalProperties.backgroundAssets = (backgroundName) =>

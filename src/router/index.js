@@ -4,6 +4,7 @@ import WetonView from "../views/Weton.vue";
 import KalenderView from "../views/Kalender.vue";
 import TerjemahanView from "../views/Terjemahan.vue";
 import NotFound from "../views/page-error/404.vue";
+import NetError from "../views/page-error/neterror.vue";
 import Pages from "../views/Pages.vue";
 import PagePost from "../views/PagePost.vue";
 
@@ -52,6 +53,12 @@ const routes = [
     name: "notfound",
     component: NotFound,
     meta: { title: "Halaman Tidak Ditemukan | Primbon", hideNavigation: true },
+  },
+  {
+    path: "/network-error",
+    name: "neterror",
+    component: NetError,
+    meta: { title: " Opps!, endpoint cannot be reach", hideNavigation: true },
   },
 ];
 
