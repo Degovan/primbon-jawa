@@ -74,14 +74,14 @@
         >
           <router-link
             :to="item.link"
-            class="tracking-wide hover:text-black p-2 hover:bg-primary"
+            class="tracking-wide hover:text-black uppercase p-2 hover:bg-primary"
             v-for="item in menuLeft"
             :key="item.name"
             >{{ item.name }}</router-link
           >
           <router-link
             :to="item.link"
-            class="tracking-wide hover:text-black p-2 hover:bg-primary"
+            class="tracking-wide hover:text-black uppercase p-2 hover:bg-primary"
             v-for="item in menuRight"
             :key="item.name"
             >{{ item.name }}</router-link
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+  import axios from "axios";
   import { Icon } from "@iconify/vue";
   export default {
     components: {
@@ -117,6 +118,8 @@
     data() {
       return {
         toggleNav: false,
+        titleWeton: "",
+        slugWeton: "",
         menuLeft: [
           {
             name: "HOME",
@@ -128,8 +131,8 @@
             right: true,
           },
           {
-            name: "WETON",
-            link: "/weton",
+            name: "",
+            link: "",
           },
         ],
         menuRight: [
@@ -151,6 +154,16 @@
           },
         ],
       };
+    },
+    mounted() {
+      axios
+        .get("https://backend.primbonjawa.net/api/v1/pages/7")
+        .then((result) => {
+          var dataWeton = result.data.data;
+          this.menuLeft[2].name = dataWeton.title;
+          this.menuLeft[2].link = `/page-post/cek-weton/${dataWeton.slug}`;
+        })
+        .catch((err) => {});
     },
   };
 </script>

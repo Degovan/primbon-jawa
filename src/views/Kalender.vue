@@ -120,7 +120,11 @@
     </div>
   </div>
 </template>
-
+<style>
+  .black-text-calendar {
+    color: #000 !important;
+  }
+</style>
 <script>
   import axios from "axios";
   import { getWeton } from "javanese-weton";
@@ -271,19 +275,34 @@
               cell.setAttribute("data-month_name", this.months[month]);
               cell.className =
                 "date-picker cursor-pointer hover:bg-primary hover:text-black";
-              cell.innerHTML = `<span class='font-bluunext text-xl ${
-                isLibur || isMinggu ? "text-primary" : null
-              }'> ${date} <br/> <span class='text-xs font-nunito'>${
-                first_h.day
-              }   ${weton.wetonName.pancawara}</span>
-                </span>`;
 
               if (
                 date === this.todayNow.getDate() &&
                 year === this.todayNow.getFullYear() &&
                 month === this.todayNow.getMonth()
               ) {
-                cell.className = "date-picker bg-primary text-black";
+                cell.innerHTML = `<span class='font-bluunext text-xl ${
+                  isLibur || isMinggu ? "text-black" : null
+                }'> ${date} <br/> <span class='text-xs font-nunito'>${
+                  first_h.day
+                }   ${weton.wetonName.pancawara}</span>
+                </span>`;
+              } else {
+                cell.innerHTML = `<span class='font-bluunext text-xl ${
+                  isLibur || isMinggu ? "text-primary" : null
+                }'> ${date} <br/> <span class='text-xs font-nunito'>${
+                  first_h.day
+                }   ${weton.wetonName.pancawara}</span>
+                </span>`;
+              }
+
+              if (
+                date === this.todayNow.getDate() &&
+                year === this.todayNow.getFullYear() &&
+                month === this.todayNow.getMonth()
+              ) {
+                cell.className =
+                  "date-picker bg-primary text-black black-text-calendar";
               }
               row.appendChild(cell);
               date++;

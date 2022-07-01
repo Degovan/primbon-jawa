@@ -24,13 +24,7 @@ const routes = [
     meta: { title: "Halaman | Primbon" },
   },
   {
-    path: "/weton",
-    name: "weton",
-    component: WetonView,
-    meta: { title: "Weton | Primbon" },
-  },
-  {
-    path: "/page-post/:pagetype/:slug",
+    path: "/:slug",
     name: "post-page",
     component: PagePost,
     meta: { title: "Memuat Halaman..." },
