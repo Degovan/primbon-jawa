@@ -161,7 +161,7 @@
         .then((result) => {
           var dataWeton = result.data.data;
           this.menuLeft[2].name = dataWeton.title;
-          this.menuLeft[2].link = `/page-post/cek-weton/${dataWeton.slug}`;
+          this.menuLeft[2].link = `${dataWeton.slug}`;
         })
         .catch((err) => {});
     },

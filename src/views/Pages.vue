@@ -27,7 +27,7 @@
               </div>
               <div class="flex-auto w-full lg:mt-0 mt-5">
                 <h3 class="text-sm text-primary font-nunito font-medium">
-                  01 Apr 22 - Oleh {{ item.title }}
+                  01 Apr 22 - {{ item.page_type }}
                 </h3>
                 <a
                   :href="
@@ -38,7 +38,7 @@
                   "
                 >
                   <h2 class="text-3xl mt-2 font-bluunext text-white">
-                    {{ item.page_type }}
+                    {{ item.title }}
                   </h2>
                 </a>
                 <p class="mt-3 font-nunito text-gray-400">
