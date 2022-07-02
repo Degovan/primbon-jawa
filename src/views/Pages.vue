@@ -27,7 +27,7 @@
               </div>
               <div class="flex-auto w-full lg:mt-0 mt-5">
                 <h3 class="text-sm text-primary font-nunito font-medium">
-                  01 Apr 22 - {{ item.page_type }}
+                  {{ item.page_type }}
                 </h3>
                 <a
                   :href="
