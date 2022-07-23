@@ -11,7 +11,7 @@
       </p>
     </div>
     <img
-      :src="backgroundAssets('night-sky-wallpaper-thumb.jpg')"
+      :src="backgroundAssets(this.img)"
       class="w-full filter grayscale brightness-50 object-cover object-bottom h-64"
     />
   </div>
@@ -22,6 +22,12 @@
     props: {
       titleBanner: String,
       subtitleBanner: String,
+      image: String,
     },
+    data(){
+      return{
+        img: this.image,
+      }
+    }
   };
 </script>

@@ -1,8 +1,9 @@
 <template>
   <div>
     <Banner
-      titleBanner="Cek Ramalan Weton Mu"
-      subtitleBanner="Primbon / Weton Jawa"
+      :titleBanner="this.title"
+      :subtitleBanner="this.page_type"
+      image="night-sky-wallpaper-thumb.jpg"
     />
     <div
       class="max-w-5xl mt-20 mx-auto grid lg:grid-cols-2 grid-cols-1 p-5 gap-4 box-border"
@@ -65,12 +66,7 @@
         <h2 class="text-2xl text-primary font-bluunext">
           Apa itu ramalan weton ?
         </h2>
-        <p class="mt-5 text-sm text-gray-300">
-          Dalam budaya Jawa, weton adalah hitungan hari lahir seseorang yang
-          digunakan sebagai patokan untuk menunjuk ramalan tertentu. Cara
-          menghitung weton bisa dilihat berdasarkan hari dan pasaran, ada juga
-          yang dihitung berdasarkan bulan tahun kelahiran.
-        </p>
+        <p class="mt-5 text-sm text-gray-300" v-html="this.descriptions"></p>
       </div>
     </div>
     <div
@@ -102,6 +98,7 @@
   import TestimoniView from "@/components/Testimoni";
   import Banner from "@/components/Banner";
   const hijri = require("hijri-js");
+  import axios from "axios";
   export default {
     data() {
       return {
@@ -113,6 +110,8 @@
         jawa: "",
         pasaran: "",
         description: "",
+        descriptions: "",
+        page_type: "",
         neptu: "",
         warsa: "",
         showWeton: false,
@@ -121,6 +120,31 @@
     components: {
       Banner,
       TestimoniView,
+    },
+    mounted() {
+      try {
+        axios
+          .get(`${this.$baseURL}pages${this.$route.fullPath}`)
+          .then((response) => {
+            var query = response.data.data;
+            this.icon =
+              ` https://backend.primbonjawa.net/favicon/` + query.icon ?? "";
+            this.page_type = "Halaman / " + query.page_type;
+            this.title = query.title;
+            this.subtitle = query.subtitle;
+            this.slug = query.slug;
+            this.descriptions = query.description;
+            document.title = query.title + " - Halaman Primbon";
+            document.description = query.short_description;
+          })
+
+          .catch((error) => {
+            console.log(error);
+            this.error = true;
+          });
+      } catch (e) {
+        alert(e);
+      }
     },
     methods: {
       wetongan: function () {
@@ -459,6 +483,5 @@
         }
       },
     },
-    mounted() {},
   };
 </script>

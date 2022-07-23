@@ -122,7 +122,7 @@
         slugWeton: "",
         menuLeft: [
           {
-            name: "HOME",
+            name: "BERANDA",
             link: "/",
           },
           {
@@ -137,18 +137,18 @@
         ],
         menuRight: [
           {
-            name: "TERJEMAHAN",
-            link: "/terjemahan",
+            name: "",
+            link: "",
             right: false,
           },
           {
-            name: "KALENDER",
-            link: "/kalender",
+            name: "",
+            link: "",
             right: true,
           },
 
           {
-            name: "CONTACT",
+            name: "HUBUNGI",
             link: "/contact",
             right: true,
           },
@@ -157,11 +157,30 @@
     },
     mounted() {
       axios
-        .get("https://backend.primbonjawa.net/api/v1/pages/7")
+        .get(`${this.$baseURL}page/cek-weton`)
         .then((result) => {
           var dataWeton = result.data.data;
-          this.menuLeft[2].name = dataWeton.title;
-          this.menuLeft[2].link = `/${dataWeton.slug}`;
+          var aliasWeton = "Weton";
+          this.menuLeft[2].name = aliasWeton.toUpperCase();
+          this.menuLeft[2].link = `/cek-weton/${dataWeton.slug}`;
+        })
+        .catch((err) => {});
+      axios
+        .get(`${this.$baseURL}page/kalender-jawa`)
+        .then((result) => {
+          var dataKalender = result.data.data;
+          var aliasKalender = "Kalender";
+          this.menuRight[0].name = aliasKalender.toUpperCase();
+          this.menuRight[0].link = `/kalender-jawa/${dataKalender.slug}`;
+        })
+        .catch((err) => {});
+      axios
+        .get(`${this.$baseURL}page/translate-jawa`)
+        .then((result) => {
+          var dataTranslate = result.data.data;
+          var aliasTranslate = "Translate";
+          this.menuRight[1].name = aliasTranslate.toUpperCase();
+          this.menuRight[1].link = `/translate-jawa/${dataTranslate.slug}`;
         })
         .catch((err) => {});
     },

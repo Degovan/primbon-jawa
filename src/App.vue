@@ -21,8 +21,8 @@
     components: {
       Header,
       Footer,
+      res: false,
+      resmessage: "",
     },
-
-    mounted() {},
   };
 </script>

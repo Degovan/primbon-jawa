@@ -7,6 +7,7 @@
       <Banner
         titleBanner="Semua Halaman"
         subtitleBanner="Home / Semua Halaman"
+        image="night-sky-wallpaper-thumb.jpg"
       />
       <div class="p-10">
         <div class="container mx-auto max-w-5xl">
@@ -21,7 +22,7 @@
             >
               <div class="flex-auto border border-secondary">
                 <img
-                  :src="imageAssets('image-45-copyright-min-800x508.jpg')"
+                  :src="imageAssets('image-16-copyright-min-800x508.jpg')"
                   class="lg:w-64 w-full"
                 />
               </div>
@@ -32,8 +33,7 @@
                 <a
                   :href="
                     $router.resolve({
-                      name: 'post-page',
-                      params: { pagetype: item.page_type, slug: item.slug },
+                      path: `/${item.page_type}/${item.slug}`,
                     }).href
                   "
                 >
@@ -41,12 +41,16 @@
                     {{ item.title }}
                   </h2>
                 </a>
-                <p class="mt-3 font-nunito text-gray-400">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  nemo ut ex illum maxime accusantium harum dolore soluta nisi
-                  omnis ea dolores voluptatibus dicta, cum praesentium ratione
-                  laboriosam iusto ad!
-                </p>
+                <p
+                  class="mt-3 font-nunito text-gray-400"
+                  v-if="item.description.length < 200"
+                  v-html="item.description"
+                ></p>
+                <p
+                  class="mt-3 font-nunito text-gray-400"
+                  v-if="item.description.length >= 200"
+                  v-html="item.description.substring(0, 200) + '...'"
+                ></p>
               </div>
             </div>
             <div class="loading font-nunito text-gray-400" v-else>

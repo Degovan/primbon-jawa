@@ -8,6 +8,7 @@ import "./assets/tailwind.css";
 import "./assets/app.scss";
 import "./assets/animate.css";
 import "aos/dist/aos.css";
+import axios from "axios";
 
 import { ObserveVisibility } from "vue-observe-visibility";
 
@@ -25,10 +26,17 @@ app.component("DatePicker", DatePicker);
 
 app.mount("#app");
 
+// check if url domain use localhost or not
+// app.config.globalProperties.$baseURL = "http://192.168.0.105:3333/api/v1/";
+// app.config.globalProperties.$baseIMG = "http://192.168.0.105:3333/pages/";
 app.config.globalProperties.$baseURL =
   "https://backend.primbonjawa.net/api/v1/";
+app.config.globalProperties.$baseIMG = "https://primbonjawa.net/pages/";
+
 app.config.globalProperties.imageAssets = (imageName) =>
   require("@/assets/img/" + imageName);
+app.config.globalProperties.iconsAssets = (iconName) =>
+  require("@/assets/icons/" + iconName);
 app.config.globalProperties.backgroundAssets = (backgroundName) =>
   require("@/assets/background/" + backgroundName);
 // Setup plugin for defaults or `$screens` (optional)

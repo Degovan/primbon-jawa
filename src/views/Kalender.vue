@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Banner titleBanner="Kalender Jawa" subtitleBanner="Primbon / Kalender" />
+    <Banner
+      :titleBanner="this.title"
+      :subtitleBanner="this.page_type"
+      image="night-sky-wallpaper-thumb.jpg"
+    />
     <div class="max-w-5xl mt-20 mx-auto p-5 box-border">
       <div class="calendar w-full box-border h-auto">
         <div class="calendar-head p-5 bg-black text-primary">
@@ -144,6 +148,10 @@
         infodate: "",
         hariIni: "",
         dayDate: "",
+        title: "",
+        descriptions: "",
+        slug: "",
+        page_type: "",
         years: "",
         todayNow: "",
         currentMonthYear: "",
@@ -366,6 +374,30 @@
       document.getElementById("thead-month").innerHTML = $dataHead;
 
       this.showCalendar(this.cMonth, this.cYear);
+
+      try {
+        axios
+          .get(`${this.$baseURL}pages${this.$route.fullPath}`)
+          .then((response) => {
+            var query = response.data.data;
+            this.icon =
+              ` https://backend.primbonjawa.net/favicon/` + query.icon ?? "";
+            this.page_type = "Halaman / " + query.page_type;
+            this.title = query.title;
+            this.subtitle = query.subtitle;
+            this.slug = query.slug;
+            this.descriptions = query.description;
+            document.title = query.title + " - Halaman Primbon";
+            document.description = query.short_description;
+          })
+
+          .catch((error) => {
+            console.log(error);
+            this.error = true;
+          });
+      } catch (e) {
+        alert(e);
+      }
     },
   };
 </script>

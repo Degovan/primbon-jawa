@@ -7,7 +7,7 @@ import NotFound from "../views/page-error/404.vue";
 import NetError from "../views/page-error/neterror.vue";
 import Pages from "../views/Pages.vue";
 import PagePost from "../views/PagePost.vue";
-
+import ContactView from "../views/Contact.vue";
 const routes = [
   {
     path: "/",
@@ -24,29 +24,40 @@ const routes = [
     meta: { title: "Halaman | Primbon" },
   },
   {
-    path: "/:slug",
+    path: "/:page_type/:slug",
     name: "post-page",
     component: PagePost,
     meta: { title: "Memuat Halaman..." },
   },
   {
-    path: "/kalender",
+    path: "/cek-weton/:slug",
+    name: "weton",
+    component: WetonView,
+    meta: { title: "Memuat Halaman..." },
+  },
+  {
+    path: "/kalender-jawa/:slug",
     name: "kalender",
     component: KalenderView,
     meta: { title: "Kalender | Primbon" },
   },
   {
-    path: "/terjemahan",
+    path: "/translate-jawa/:slug",
     name: "Terjemahan",
     component: TerjemahanView,
     meta: { title: "Terjemahan Indonesia ke jawa | Primbon" },
   },
-
+  {
+    path: "/contact/:slug",
+    name: "Contact",
+    component: ContactView,
+    meta: { title: "Hubungi Kami | Primbon" },
+  },
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
     component: NotFound,
-    meta: { title: "Halaman Tidak Ditemukan | Primbon", hideNavigation: true },
+    meta: { title: "Halaman Tidak Ditemukan | Primbon" },
   },
   {
     path: "/network-error",
